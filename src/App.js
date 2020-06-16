@@ -18,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <p>React Tracker App</p>
       </header>
     </div>
   );
