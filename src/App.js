@@ -1,27 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
+  console.log('props',props)
+  const { name, updatedName } = props
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>React Tracker App</p>
-      </header>
+      <h1>This is app component</h1>
+      <h1>My name is {name}</h1>
+      <button onClick={()=>updatedName('Ahmed')}>Update</button>
     </div>
   );
 }
 
-export default App;
+const mapStateToPorps = (state) => {
+  console.log(state)
+  const { name } = state
+  return {
+    name
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+    updatedName: (name) => {dispatch({type: 'UpdatedName', payload: name})}
+  }
+}
+
+export default connect(mapStateToPorps, mapDispatchToProps)(App);
