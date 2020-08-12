@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 
+//action
+import { handleName } from './action'
+
 function App(props) {
   console.log('props',props)
   const { name, updatedName } = props
@@ -9,7 +12,7 @@ function App(props) {
     <div className="App">
       <h1>This is app component</h1>
       <h1>My name is {name}</h1>
-      <button onClick={()=>updatedName('Ahmed')}>Update</button>
+      <button onClick={()=>updatedName()}>Update</button>
     </div>
   );
 }
@@ -24,7 +27,7 @@ const mapStateToPorps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    updatedName: (name) => {dispatch({type: 'UpdatedName', payload: name})}
+    updatedName: () => {dispatch(handleName())}
   }
 }
 
